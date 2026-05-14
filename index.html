@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Li Long — Pipeline & Quality Engineer</title>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --bg-deep: #060d1a;
+    --bg-primary: #0b1a2e;
+    --bg-card: #0f2240;
+    --border: #1a3355;
+    --accent: #3b82f6;
+    --accent-light: #60a5fa;
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --gold: #c9a94e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg-deep);
+    color: var(--text-primary);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Navigation ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(6, 13, 26, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+  }
+  nav .inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+  }
+  nav .logo { font-weight: 700; font-size: 1.1rem; color: var(--text-primary); letter-spacing: 0.02em; }
+  nav .logo span { color: var(--accent-light); }
+  nav .links { display: flex; gap: 1.8rem; list-style: none; }
+  nav .links a {
+    color: var(--text-secondary); text-decoration: none;
+    font-size: 0.85rem; font-weight: 500; transition: color 0.2s;
+  }
+  nav .links a:hover { color: var(--accent-light); }
+
+  section { padding: 5rem 2rem; }
+  .container { max-width: 960px; margin: 0 auto; }
+
+  /* ── Hero ── */
+  .hero {
+    padding-top: 10rem; padding-bottom: 6rem;
+    text-align: center;
+    background: radial-gradient(ellipse 60% 50% at 50% -20%, rgba(59,130,246,0.12), transparent);
+  }
+  .hero .badge {
+    display: inline-block; padding: 0.3rem 1rem;
+    border: 1px solid var(--border); border-radius: 50px;
+    font-size: 0.8rem; color: var(--accent-light); letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 { font-size: 3.2rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+  .hero h1 span { color: var(--accent-light); }
+  .hero .subtitle {
+    font-size: 1.15rem; color: var(--text-secondary); margin-top: 1rem;
+    max-width: 600px; margin-left: auto; margin-right: auto;
+  }
+  .hero .meta {
+    display: flex; justify-content: center; gap: 2rem; margin-top: 2rem;
+    font-size: 0.85rem; color: var(--text-muted);
+  }
+  .hero .meta span { display: flex; align-items: center; gap: 0.4rem; }
+
+  /* ── Section Headers ── */
+  .section-header { text-align: center; margin-bottom: 3.5rem; }
+  .section-tag {
+    display: inline-block; font-size: 0.75rem; font-weight: 600;
+    color: var(--accent-light); letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-size: 2rem; font-weight: 700; letter-spacing: -0.02em;
+    color: var(--text-primary);
+  }
+  .section-line {
+    width: 48px; height: 3px; background: var(--accent);
+    margin: 1rem auto 0; border-radius: 2px;
+  }
+
+  /* ── About ── */
+  .about-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  .about-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.8rem;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+  .about-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .about-card .icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: rgba(59,130,246,0.12);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; margin-bottom: 1rem;
+  }
+  .about-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .about-card p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
+
+  /* ── Competencies ── */
+  .comp-list {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1.2rem;
+  }
+  .comp-item {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1.3rem 1.6rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .comp-item .bullet {
+    flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+    background: rgba(59,130,246,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; color: var(--accent-light); font-weight: 700;
+  }
+  .comp-item p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.65; }
+
+  /* ── Timeline ── */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 7px; top: 4px; bottom: 4px;
+    width: 2px; background: var(--border);
+  }
+  .tl-item { position: relative; margin-bottom: 2.5rem; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -2rem; top: 6px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--accent); border: 3px solid var(--bg-deep);
+    z-index: 1;
+  }
+  .tl-header { margin-bottom: 0.6rem; }
+  .tl-date {
+    font-size: 0.78rem; font-weight: 600; color: var(--accent-light);
+    letter-spacing: 0.04em;
+  }
+  .tl-role { font-size: 1.05rem; font-weight: 600; color: var(--text-primary); }
+  .tl-org {
+    font-size: 0.85rem; color: var(--text-muted); margin-top: 0.15rem;
+  }
+  .tl-desc {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1.2rem 1.5rem; margin-top: 0.6rem;
+  }
+  .tl-desc ul { list-style: none; }
+  .tl-desc li {
+    font-size: 0.84rem; color: var(--text-secondary);
+    padding: 0.25rem 0; padding-left: 1rem; position: relative;
+  }
+  .tl-desc li::before {
+    content: '—'; position: absolute; left: 0; color: var(--text-muted);
+    font-size: 0.7rem; top: 0.35rem;
+  }
+
+  /* ── Certifications ── */
+  .cert-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.2rem;
+  }
+  .cert-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1.5rem; text-align: center;
+    transition: border-color 0.25s;
+  }
+  .cert-card:hover { border-color: var(--accent); }
+  .cert-card .cert-icon { font-size: 1.6rem; margin-bottom: 0.5rem; }
+  .cert-card h4 { font-size: 0.9rem; font-weight: 600; }
+  .cert-card p { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem; }
+
+  /* ── Contact ── */
+  .contact { background: var(--bg-primary); text-align: center; }
+  .contact-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem; margin-top: 2.5rem; align-items: center; justify-items: center;
+  }
+  .qr-wrap { text-align: center; }
+  .qr-wrap .qrcode {
+    width: 140px; height: 140px; margin: 0 auto;
+    background: #fff; border-radius: 12px; padding: 8px;
+  }
+  .qr-wrap .qrcode canvas,
+  .qr-wrap .qrcode img { width: 124px !important; height: 124px !important; }
+  .qr-wrap .label { font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.7rem; }
+  .qr-wrap .value { font-size: 0.9rem; color: var(--text-primary); font-weight: 500; }
+
+  .contact-note {
+    margin-top: 2rem; font-size: 0.8rem; color: var(--text-muted);
+  }
+
+  /* ── Footer ── */
+  footer {
+    text-align: center; padding: 2.5rem 2rem;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted); font-size: 0.78rem;
+  }
+
+  .tl-project {
+    font-size: 0.82rem; color: var(--accent-light); font-weight: 500;
+    margin-bottom: 0.4rem; padding-left: 0.2rem;
+  }
+
+  .tl-sub-card {
+    background: rgba(15,34,64,0.5); border: 1px solid rgba(26,51,85,0.6);
+    border-radius: 8px; padding: 1rem 1.3rem; margin-top: 0.6rem;
+  }
+  .tl-sub-date {
+    font-size: 0.72rem; font-weight: 600; color: var(--accent-light);
+    letter-spacing: 0.04em; margin-bottom: 0.2rem;
+  }
+  .tl-sub-title {
+    font-size: 0.85rem; font-weight: 600; color: var(--text-primary);
+    margin-bottom: 0.35rem;
+  }
+  .tl-sub-desc {
+    font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 2.2rem; }
+    .hero .subtitle { font-size: 1rem; }
+    .comp-list { grid-template-columns: 1fr; }
+    .tl-desc li { font-size: 0.8rem; }
+    nav .links { gap: 1rem; }
+  }
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 1.8rem; }
+    section { padding: 3rem 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav>
+  <div class="inner">
+    <div class="logo">Li<span>Long</span></div>
+    <ul class="links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#competencies">Competencies</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#credentials">Credentials</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<section class="hero">
+  <div class="badge">Oil & Gas Engineering</div>
+  <h1>Li <span>Long</span></h1>
+  <p class="subtitle">
+    Project Quality Management &bull; Welding & Piping Quality Supervision &bull; NDT Management
+  </p>
+  <div class="meta">
+    <span>&#9679; Piping / Pipeline Engineer</span>
+    <span>&#9679; QA/QC Lead</span>
+    <span>&#9679; Project Management Engineer</span>
+    <span>&#9679; 16+ Years Exp.</span>
+  </div>
+</section>
+
+<!-- ── About ── -->
+<section id="about">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">About</div>
+      <h2 class="section-title">Professional Profile</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="icon">&#9765;</div>
+        <h3>Quality Management</h3>
+        <p>End-to-end project quality management system establishment, implementation, maintenance and continuous improvement for oil & gas projects.</p>
+      </div>
+      <div class="about-card">
+        <div class="icon">&#9881;</div>
+        <h3>Welding & NDT Expert</h3>
+        <p>Full-cycle welding quality management including WPS/PQR review, welder qualification, process surveillance. Expert in RT/PT NDT management.</p>
+      </div>
+      <div class="about-card">
+        <div class="icon">&#127758;</div>
+        <h3>International Experience</h3>
+        <p>Over 16 years of quality management & supervision in Iraq, Malaysia, Sudan, with strong cross-cultural communication capability.</p>
+      </div>
+      <div class="about-card">
+        <div class="icon">&#128218;</div>
+        <h3>Codes & Standards</h3>
+        <p>Proficient in AWS, ASME, API codes. Familiar with piping/pipeline quality standards, construction inspection protocols and handover documentation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Core Competencies ── -->
+<section id="competencies" style="background: var(--bg-primary);">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Strengths</div>
+      <h2 class="section-title">Core Quality Competencies</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="comp-list">
+      <div class="comp-item">
+        <div class="bullet">01</div>
+        <p>Competent in end-to-end project quality management system establishment, implementation, maintenance and continuous improvement for oil & gas projects.</p>
+      </div>
+      <div class="comp-item">
+        <div class="bullet">02</div>
+        <p>Experienced in QA/QC team leadership, supervision, performance management and cross-departmental coordination throughout engineering, procurement, construction and commissioning phases.</p>
+      </div>
+      <div class="comp-item">
+        <div class="bullet">03</div>
+        <p>Expert in full-cycle welding quality management including WPS/PQR review, welder qualification, welding process surveillance and weld quality control in compliance with AWS, ASME and API codes.</p>
+      </div>
+      <div class="comp-item">
+        <div class="bullet">04</div>
+        <p>Competent in NDT management covering RT/PT testing planning, implementation supervision, report review and quality assurance of inspection activities.</p>
+      </div>
+      <div class="comp-item">
+        <div class="bullet">05</div>
+        <p>Familiar with piping/pipeline quality standards, construction quality control, inspection protocols and handover documentation requirements.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Work Experience ── -->
+<section id="experience">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Career</div>
+      <h2 class="section-title">Work Experience</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-header">
+          <div class="tl-date">Mar 2023 — Dec 2025</div>
+          <div class="tl-role">Piping Quality Engineer & Project Quality Supervisor</div>
+          <div class="tl-org">Long River Middle East Consultant DWC-LLC, Iraq</div>
+        </div>
+        <div class="tl-project">PMC — Majnoon Oil Field (Anton Oil / BOC)</div>
+        <div class="tl-desc">
+          <ul>
+            <li>Conducted quality review of piping design documents, drawings, material specifications and construction procedures to ensure compliance with project standards and applicable codes</li>
+            <li>Performed on-site quality inspection and surveillance for piping fabrication, installation, welding and testing; identified and tracked non-conformities through to closure</li>
+            <li>Supervised project quality progress, coordinated quality issues among client, contractor and PMC team, and organized quality coordination meetings</li>
+            <li>Ensured quality deliverables, inspection records and handover documentation remained complete, accurate and fully traceable throughout project execution</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-header">
+          <div class="tl-date">Feb 2019 — Feb 2023</div>
+          <div class="tl-role">Lead QA/QC Engineer (PMC)</div>
+          <div class="tl-org">CNOOC Safety Technology Service Co., Ltd, Iraq</div>
+        </div>
+        <div class="tl-project">General Services for New Projects PMC — Missan Oil Field (MOC CMIT)</div>
+        <div class="tl-desc">
+          <ul>
+            <li>Led the QA/QC team in overall quality management, including work assignment, personnel supervision, performance monitoring and cross-party coordination</li>
+            <li>Developed and maintained the project quality management system, encompassing quality procedures, inspection & test plans (ITP) and quality documentation control</li>
+            <li>Reviewed contractor-submitted quality procedures, WPS, NDT plans and inspection records; participated in critical inspections, witness tests and project acceptance</li>
+            <li>Conducted on-site quality surveillance for welding, NDT, piping and construction activities; analyzed quality data to drive continuous improvement</li>
+            <li>Organized quality meetings, prepared quality status reports, and implemented corrective and preventive actions to reduce non-conformities</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-header">
+          <div class="tl-date">Dec 2016 — Jan 2019</div>
+          <div class="tl-role">Construction Lead Engineer (PMC)</div>
+          <div class="tl-org">HuanQiu Project Management (Beijing) Co. Ltd., Malaysia</div>
+        </div>
+        <div class="tl-project">Multi-Product Pipeline Project (Strategic Energy Resources / SSER)</div>
+        <div class="tl-desc">
+          <ul>
+            <li>Engaged in project planning, ensuring adherence to required milestones and timelines throughout the project lifecycle</li>
+            <li>Prepared construction management plans and procedures; reviewed related documents submitted by contractors for compliance</li>
+            <li>Managed on-site construction activities to ensure full compliance with safety and quality requirements</li>
+            <li>Coordinated and communicated with all relevant parties to resolve construction-related issues effectively</li>
+            <li>Supervised general construction progress, reported on construction events, and contributed to related management meetings</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-header">
+          <div class="tl-date">Oct 2011 — May 2015</div>
+          <div class="tl-role">Project Manager (2014–2015) / Pipeline & Piping Engineer (2011–2014)</div>
+          <div class="tl-org">China HuanQiu Contracting & Engineering Corp., Iraq (Rumaila Oil Field, BP)</div>
+        </div>
+
+        <div class="tl-sub-card">
+          <div class="tl-sub-date">Jun 2014 — May 2015</div>
+          <div class="tl-sub-title">Project Manager — NDT Service Contract, Rumaila Oil Field (BP)</div>
+          <p class="tl-sub-desc">Managed all aspects of NDT project execution, including project planning, technical coordination, equipment and consumables procurement, task instruction, internal and external reporting, and multi-party coordination.</p>
+        </div>
+
+        <div class="tl-sub-card">
+          <div class="tl-sub-date">Oct 2011 — Apr 2014</div>
+          <div class="tl-sub-title">Pipeline / Piping Engineer — GEC Project, Rumaila Oil Field (BP)</div>
+          <p class="tl-sub-desc">Designed pipeline and piping systems in accordance with applicable codes and project requirements. Prepared design documents including drawings and MTOs. Conducted site surveys to determine pipeline routes and facility locations. Coordinated with other disciplines to ensure technical proposals were sound, and provided design input to downstream disciplines as well as technical support to construction, operation and maintenance teams.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-header">
+          <div class="tl-date">Aug 2007 — Aug 2011</div>
+          <div class="tl-role">Welding & Quality Engineer / Supervisor</div>
+          <div class="tl-org">China Petroleum 6th Construction Company</div>
+        </div>
+
+        <div class="tl-project">Projects Undertaken</div>
+
+        <div class="tl-sub-card">
+          <div class="tl-sub-date">Sep 2010 — Aug 2011</div>
+          <div class="tl-sub-title">Alternation Project for 5 Million Ton/Year Refinery — Hohhot, China</div>
+          <p class="tl-sub-desc">Hohhot Petrochemical Co.</p>
+        </div>
+
+        <div class="tl-sub-card">
+          <div class="tl-sub-date">Feb 2009 — Jun 2010</div>
+          <div class="tl-sub-title">Tank Expansion Project — FULA Oil Field, Sudan</div>
+          <p class="tl-sub-desc">Greater Nile Petroleum Operating Company (GNPOC)</p>
+        </div>
+
+        <div class="tl-sub-card">
+          <div class="tl-sub-date">Aug 2008 — Feb 2009</div>
+          <div class="tl-sub-title">Maintenance of Facilities — HEGLIG Oil Field, Sudan</div>
+          <p class="tl-sub-desc">Greater Nile Petroleum Operating Company (GNPOC)</p>
+        </div>
+
+        <div class="tl-sub-card">
+          <div class="tl-sub-date">Feb 2008 — Aug 2008</div>
+          <div class="tl-sub-title">GUMRY FPF Project — Sudan</div>
+          <p class="tl-sub-desc">Petrodar Petroleum Operation Company</p>
+        </div>
+
+        <div class="tl-sub-card">
+          <div class="tl-sub-date">Dec 2007 — Feb 2008</div>
+          <div class="tl-sub-title">Tank Expansion Project — FULA Oil Field, Sudan</div>
+          <p class="tl-sub-desc">Greater Nile Petroleum Operating Company (GNPOC)</p>
+        </div>
+
+        <div class="tl-desc" style="margin-top: 1rem;">
+          <div class="tl-sub-date" style="margin-bottom: 0.5rem;">KEY RESPONSIBILITIES</div>
+          <ul>
+            <li>Oversaw full-process welding quality control, including WPS development, welder qualification, process surveillance and defect rectification</li>
+            <li>Implemented quality monitoring in accordance with project specifications, contract requirements and industry codes (piping, structural, pressure vessel)</li>
+            <li>Conducted regular on-site quality inspections, tracked non-conformities and ensured timely closure</li>
+            <li>Managed welding quality database, inspection reports and quality records to maintain full traceability</li>
+            <li>Reported quality status and NDT results in daily meetings to support production quality control</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Education & Certifications ── -->
+<section id="credentials" style="background: var(--bg-primary);">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Credentials</div>
+      <h2 class="section-title">Education & Certifications</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div style="text-align: center; margin-bottom: 2.5rem;">
+      <div style="display: inline-block; background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem 2.5rem;">
+        <div style="font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.3rem;">Education</div>
+        <div style="font-size: 1.05rem; font-weight: 600;">Bachelor of Engineering</div>
+        <div style="font-size: 0.88rem; color: var(--text-secondary);">Liaoning Petrochemical University</div>
+      </div>
+    </div>
+
+    <div class="cert-grid">
+      <div class="cert-card">
+        <div class="cert-icon">&#127942;</div>
+        <h4>PMP</h4>
+        <p>Project Management Professional</p>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">&#127919;</div>
+        <h4>PRINCE2&reg; Practitioner</h4>
+        <p>Projects IN Controlled Environments</p>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">&#128295;</div>
+        <h4>CWI</h4>
+        <p>Certified Welding Inspector</p>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">&#128269;</div>
+        <h4>ASNT Level II</h4>
+        <p>RT &amp; PT — Radiographic & Penetrant Testing</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Contact ── -->
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Get in Touch</div>
+      <h2 class="section-title">Contact Me</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="qr-wrap">
+        <div class="qrcode" id="qr-email"></div>
+        <div class="label">Email</div>
+        <div class="value">li1982long@163.com</div>
+      </div>
+      <div class="qr-wrap">
+        <div class="qrcode" id="qr-phone"></div>
+        <div class="label">Phone</div>
+        <div class="value">+86 186 7733 7727</div>
+      </div>
+    </div>
+    <p class="contact-note">Scan QR codes to save my contact information directly.</p>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  &copy; 2026 Li Long. All rights reserved.
+</footer>
+
+<script>
+// Generate QR codes
+new QRCode(document.getElementById('qr-email'), {
+  text: 'mailto:li1982long@163.com',
+  width: 124,
+  height: 124,
+  colorDark: '#0b1a2e',
+  colorLight: '#ffffff',
+  correctLevel: QRCode.CorrectLevel.M
+});
+new QRCode(document.getElementById('qr-phone'), {
+  text: 'tel:+8618677337727',
+  width: 124,
+  height: 124,
+  colorDark: '#0b1a2e',
+  colorLight: '#ffffff',
+  correctLevel: QRCode.CorrectLevel.M
+});
+</script>
+
+</body>
+</html>
