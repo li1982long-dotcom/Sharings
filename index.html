@@ -540,11 +540,6 @@
         <div class="label">Email</div>
         <div class="value">li1982long@163.com</div>
       </div>
-      <div class="qr-wrap">
-        <div class="qrcode" id="qr-phone"></div>
-        <div class="label">Phone</div>
-        <div class="value">+86 186 7733 7727</div>
-      </div>
     </div>
     <p class="contact-note">Scan QR codes to save my contact information directly.</p>
   </div>
@@ -559,14 +554,6 @@
 // Generate QR codes
 new QRCode(document.getElementById('qr-email'), {
   text: 'mailto:li1982long@163.com',
-  width: 124,
-  height: 124,
-  colorDark: '#0b1a2e',
-  colorLight: '#ffffff',
-  correctLevel: QRCode.CorrectLevel.M
-});
-new QRCode(document.getElementById('qr-phone'), {
-  text: 'tel:+8618677337727',
   width: 124,
   height: 124,
   colorDark: '#0b1a2e',
