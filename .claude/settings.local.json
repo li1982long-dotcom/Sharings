@@ -13,7 +13,11 @@
       "PowerShell(& \"C:\\\\Program Files\\\\GitHub CLI\\\\gh.exe\" auth status 2>&1)",
       "PowerShell(& \"C:\\\\Program Files\\\\GitHub CLI\\\\gh.exe\" auth login --hostname github.com --web 2>&1)",
       "PowerShell(& \"C:\\\\Program Files\\\\GitHub CLI\\\\gh.exe\" api \"repos/li1982long-dotcom/li1982long-dotcom.github.io/pages\" 2>&1)",
-      "PowerShell(& \"C:\\\\Program Files\\\\GitHub CLI\\\\gh.exe\" api \"repos/li1982long-dotcom/li1982long-dotcom.github.io/pages\" --method POST --field \"source[branch]=master\" --field \"source[path]=/\" 2>&1)"
+      "PowerShell(& \"C:\\\\Program Files\\\\GitHub CLI\\\\gh.exe\" api \"repos/li1982long-dotcom/li1982long-dotcom.github.io/pages\" --method POST --field \"source[branch]=master\" --field \"source[path]=/\" 2>&1)",
+      "WebFetch(domain:li1982long-dotcom.github.io)",
+      "Bash(curl -s https://li1982long-dotcom.github.io)",
+      "Bash(Select-String -Pattern '<title>')",
+      "PowerShell($response = Invoke-WebRequest -Uri \"https://li1982long-dotcom.github.io\" -UseBasicParsing; $response.Content | Select-String -Pattern '<title>')"
     ]
   }
 }
